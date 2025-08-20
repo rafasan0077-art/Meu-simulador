@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Drag Race Simulator</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f9; color: #333; text-align: center; margin: 0; padding: 0; }
+        header { background: #e04e9a; color: #fff; padding: 2rem 0; }
+        main { margin: 2rem auto; max-width: 500px; background: #fff; border-radius: 8px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08);}
+        input, button { padding: 0.5rem 1rem; font-size: 1rem; }
+        ul { list-style: none; padding: 0; }
+        li { margin: 0.5rem 0; }
+        #winner { font-weight: bold; color: #e04e9a; font-size: 1.3rem; margin-top: 1.5rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Drag Race Simulator</h1>
+        <p>Simule sua própria corrida de Drags!</p>
+    </header>
+    <main>
+        <h2>Participantes</h2>
+        <ul id="participants">
+            <li>Drag Queen 1</li>
+            <li>Drag Queen 2</li>
+            <li>Drag Queen 3</li>
+        </ul>
+        <input type="text" id="newName" placeholder="Adicionar participante" />
+        <button onclick="addParticipant()">Adicionar</button>
+        <br><br>
+        <button onclick="simulateRace()">Simular Corrida</button>
+        <div id="winner"></div>
+    </main>
+    <script>
+        const participantsList = document.getElementById('participants');
+        const winnerDiv = document.getElementById('winner');
+        const newNameInput = document.getElementById('newName');
+
+        function addParticipant() {
+            const name = newNameInput.value.trim();
+            if (name) {
+                const li = document.createElement('li');
+                li.textContent = name;
+                participantsList.appendChild(li);
+                newNameInput.value = '';
+                winnerDiv.textContent = '';
+            }
+        }
+
+        function simulateRace() {
+            const participants = Array.from(participantsList.children).map(li => li.textContent);
+            if (participants.length < 2) {
+                winnerDiv.textContent = 'Adicione pelo menos 2 participantes!';
+                return;
+            }
+            const winnerIndex = Math.floor(Math.random() * participants.length);
+            winnerDiv.textContent = `🏁 A vencedora é: ${participants[winnerIndex]}! 🌟`;
+        }
+
+        newNameInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') addParticipant();
+        });
+    </script>
+</body>
+</html>
