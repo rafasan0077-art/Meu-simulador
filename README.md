@@ -8,6 +8,6 @@ Meu simulador drag race
 </head>
 <body>
     <h1>Bem-vindo ao Meu Simulador Drag Race!</h1>
-    <p>Em breve, mais novidades aqui.</p>
+    <p>Crie sumulação da sua race no the sims aqui.</p>
 </body>
 </html>
